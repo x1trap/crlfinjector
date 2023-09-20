@@ -16,8 +16,9 @@ func main() {
 	red := color.New(color.FgRed)
 	green := color.New(color.FgGreen).Add(color.Underline)
 
+	onlyPositive := flag.Bool("p", false, "show only positive results.")
 	payloadList := "payloads.txt"
-	website := flag.String("site", "", "site to test")
+	website := flag.String("site", "", "site to test.")
 	flag.Parse()
 
 	file, err := os.Open(payloadList)
@@ -64,10 +65,17 @@ func main() {
 		}
 
 		setCookie := response.Header.Get("Set-Cookie")
-		if setCookie != "" {
-			green.Printf("[", payloads, "]     HIT")
+
+		if *onlyPositive {
+			if setCookie != "" {
+				green.Printf("[", payloads, "]     HIT")
+			}
 		} else {
-			red.Println("[", payloads, "]    :(")
+			if setCookie != "" {
+				green.Printf("[", payloads, "]     HIT")
+			} else {
+				red.Println("[", payloads, "]    :(")
+			}
 		}
 	}
 }
