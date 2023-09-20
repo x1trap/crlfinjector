@@ -6,3 +6,4 @@ tool to discover if crlf injection is possible (do not rely on it too much)
 
 ### TODO:
 - add `file` flag, so you can test multiple targets.
+- add proxies options. 
