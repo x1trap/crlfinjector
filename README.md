@@ -1,6 +1,6 @@
 # crlfinjector
 tool to discover if crlf injection is possible (do not rely on it too much)
-### prerequiretes 
+### prerequisites 
 `go get github.com/fatih/color`
 
 ### usage : 
